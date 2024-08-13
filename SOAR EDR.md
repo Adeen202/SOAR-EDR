@@ -219,21 +219,6 @@ Save the output and check the connection to Tines.
 
 ![image](https://github.com/user-attachments/assets/ab759dd8-5b27-4dc3-ace5-7bedfa27ad51)
 
-
-Generate the event again by executing lazagne. We get a sample output for Tines.
-
-![image](https://github.com/user-attachments/assets/d57b7052-4532-40dd-8714-c10a37e4522b)
-
-
-Head over to Tines to check for event detection. From webhook click events and then select the most recent event.
-![image](https://github.com/user-attachments/assets/19bc0486-73fb-43dc-a772-4496bd8fdbb4)
-
-
-We get the same exact detection on Tines.
-
-![image](https://github.com/user-attachments/assets/b14b8357-4b14-420e-b1c3-6343c11b09c8)
-
-
 Now we know the detection is working in both LimaCharlie and Tines. Next, we have to setup slack for receiving detection messages. So now let’s create a playbook for automation.
 ## 6. Generating Playbook For Automation
 In this section we will create a playbook in Tines using the workflow diagram we created before.
@@ -277,7 +262,7 @@ We want to send message to the slack, so search for “send a message’ on the 
 Run and check if messages are being delivered to slack.
 
 ![image](https://github.com/user-attachments/assets/66351ac7-f4c8-464b-9813-47eac57da2c9)
-**Linking Email**
+## Linking Email
 
 We are receiving messages in slack’s alert channel. Now, we also need to send an email. Add email from the items on left panel. Add description, recipient of email and the body of email.
 
