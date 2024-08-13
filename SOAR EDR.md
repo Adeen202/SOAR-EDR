@@ -96,7 +96,6 @@ Head over to services to see if LimaCharlie is running on our Windows machine.
 
 ![image](https://github.com/user-attachments/assets/2810ac10-8511-48cc-8499-1beadca5596b)
 
-
 ### Navigating Sensor Information In LimaCharlie
 
 Move to the sensor list under the sensor tab in LimaCharlie and locate the server/PC name.
@@ -152,7 +151,6 @@ Next we see the NEW-PROCESS event that is generated when we executed the Lazagne
 
 ![image](https://github.com/user-attachments/assets/98701dc1-44d7-4ac1-aec6-8b369fba4648)
 
-
 From this information we are going to create our rule. 
 
 ### Detection And Response Rule
@@ -166,33 +164,24 @@ Head over to Detections and then D&R rules. From there click on the “New Rule�
 ### Detection Rule
 ![image](https://github.com/user-attachments/assets/95847e43-ce0b-4190-8dc9-0151346f7e74)
 
-
 The rule trigger if the process event is under the *New Process* or *Existing process* type and the machine is windows machine. The rule will ignore case sensitivity and then search for the file path ending with lazagne.exe, and search for ‘all’ flag at the end and also compares the hash value.
 
 ### Response
 ![image](https://github.com/user-attachments/assets/7df221f9-5352-42e2-9698-71eb92c631a0)
 ![image](https://github.com/user-attachments/assets/1c3485c2-887b-4bfc-8794-30ce107acaf2)
-
-
 ### Testing
 
 We will save and test the rule. 
 Grab the event from Timeline and paste it in test area provided at the end of the rule page.
 
 ![image](https://github.com/user-attachments/assets/1ef26bdd-b177-414f-a5df-aa1bca6ce9d4)
-
-
 ### Result
 
 ![image](https://github.com/user-attachments/assets/59ed6d7e-0dee-4aee-996f-e9d51a7ee590)
-
-
 So our rule is working and providing detection when Lazagne.exe is executed. 
-
 ## 5. Forwarding Detection To Tines 
 
 We will setup our slack and Tines in this section and then test our connection between LimaCharlie and Tines, making sure our soar is receiving detection made by LimaCharlie.
-
 ### Slack
 
 Slack is a collaboration platform designed to streamline communication and collaboration within teams and organizations. It combines messaging, file sharing, and integration with other tools to create a unified workspace.
@@ -200,8 +189,6 @@ Slack is a collaboration platform designed to streamline communication and colla
 Create a new workspace in slack. Then create a channel *#alerts* for receiving messages of detection from Tines.
 
 ![image](https://github.com/user-attachments/assets/00f2fb33-1fb5-4307-9307-253c0b2a9946)
-
-
 ### Setting Up Tines For Detection
 
 The **Tines** is a security automation tool designed to help security teams automate repetitive tasks, manage workflows, and respond to incidents efficiently. Unlike traditional SOAR platforms, Tines aims to simplify the automation process with a user-friendly, no-code interface.
@@ -248,21 +235,12 @@ We get the same exact detection on Tines.
 
 
 Now we know the detection is working in both LimaCharlie and Tines. Next, we have to setup slack for receiving detection messages. So now let’s create a playbook for automation.
-
 ## 6. Generating Playbook For Automation
-
 In this section we will create a playbook in Tines using the workflow diagram we created before.
-
 ### Playbook
-
 A **playbook** in the context of cybersecurity, especially within SOAR (Security Orchestration, Automation, and Response), is a predefined set of procedures and actions that are executed automatically in response to specific security incidents or threats. A playbook is like a detailed step-by-step guide for dealing with certain types of security problems. It tells you what to do and in what order to ensure the issue is handled correctly and efficiently.
-
 The objective of this playbook will be to send a message to slack and also send an email containing information about detection. Tines will then generate a user prompt to either isolate the machine. If user selects *Yes,* then LimaCharlie should automatically isolate the machine.
-
 The following image shows the complete Tines playbook for this project.  
-
-
-
 ### Linking Slack
 
 First we need to connect Tines and slack. In slack go to more options and then select automations. Search for Tines and click add.
@@ -299,8 +277,6 @@ We want to send message to the slack, so search for “send a message’ on the 
 Run and check if messages are being delivered to slack.
 
 ![image](https://github.com/user-attachments/assets/66351ac7-f4c8-464b-9813-47eac57da2c9)
-
-
 **Linking Email**
 
 We are receiving messages in slack’s alert channel. Now, we also need to send an email. Add email from the items on left panel. Add description, recipient of email and the body of email.
@@ -310,8 +286,6 @@ We are receiving messages in slack’s alert channel. Now, we also need to send 
 Run to check if it is sending email. We get email in our inbox.
 
 ![image](https://github.com/user-attachments/assets/65a6e603-14b4-400f-8910-4cd8d061e9d5)
-
-
 ### Adding Detection Details
 
 Add the details of detection in send message for slack and also in email body.
@@ -326,8 +300,6 @@ Add details of detection in email body section.
 
 
 ![image](https://github.com/user-attachments/assets/3ad09134-2654-4004-944d-299d8836074f)
-
-
 ### USER Prompt
 
 For generating a user prompt we will use page in Tines. Also add the details of detection here and ask the user to either isolate the machine or not.
@@ -369,19 +341,9 @@ Similarly, if user selects Yes the machine is isolated by LimaCharlie and the is
 The machine will be isolated and not able to connect outside. 
 
 ![image](https://github.com/user-attachments/assets/06fbb9f8-a695-40c5-9437-bf64cb2147f5)
-
-
 ## 7. Summary
 
 In the project we use LimaCharlie to detect any malicious action on our endpoint and then automated the process of isolating the endpoint using Tines. Tines will also send detection messages to slack in particular channel for informing the team or dedicated person while also sending email about detection.
 
 
 
-
-[ref1]: Aspose.Words.a42b4ec1-1d2f-4866-b776-fc26e2b59485.002.png
-[ref2]: Aspose.Words.a42b4ec1-1d2f-4866-b776-fc26e2b59485.029.png
-[ref3]: Aspose.Words.a42b4ec1-1d2f-4866-b776-fc26e2b59485.038.png
-[ref4]: Aspose.Words.a42b4ec1-1d2f-4866-b776-fc26e2b59485.042.png
-[ref5]: Aspose.Words.a42b4ec1-1d2f-4866-b776-fc26e2b59485.047.png
-[ref6]: Aspose.Words.a42b4ec1-1d2f-4866-b776-fc26e2b59485.049.png
-[ref7]: Aspose.Words.a42b4ec1-1d2f-4866-b776-fc26e2b59485.055.png
